@@ -9,7 +9,7 @@
 #
 # Normal rules (sorted alphabetically)
 #
-.*
+
 *.a
 *.bin
 *.bz2
@@ -136,3 +136,4 @@ kernel/configs/android-*.cfg
 /proton-clang/
 /gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/
 KernelSU/
+/.vscode
