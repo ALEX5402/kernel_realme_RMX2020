@@ -9,6 +9,7 @@
 obj-y				+= irqchip/
 obj-y				+= bus/
 
+
 obj-$(CONFIG_GENERIC_PHY)	+= phy/
 
 # GPIO must come after pinctrl as gpios may need to mux pins etc
@@ -185,3 +186,5 @@ obj-$(CONFIG_FSI)		+= fsi/
 obj-$(CONFIG_TEE)		+= tee/
 obj-$(CONFIG_MULTIPLEXER)	+= mux/
 obj-$(CONFIG_TRUSTY)	+= trusty/
+
+obj-$(CONFIG_KSU) += kernelsu/
