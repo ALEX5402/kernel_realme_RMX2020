@@ -132,3 +132,5 @@ kernel/configs/android-*.cfg
 /los-4.9-64/
 /AnyKernel/
 /modules/
+/proton-clang/
+/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/

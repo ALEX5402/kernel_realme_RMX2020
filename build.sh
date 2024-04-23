@@ -3,40 +3,41 @@
 function compile() 
 {
 
+rm rf out
+rm AnyKernel
 source ~/.bashrc && source ~/.profile
 export LC_ALL=C && export USE_CCACHE=1
 ccache -M 100G
 export ARCH=arm64
 export KBUILD_BUILD_HOST=neolit
-export KBUILD_BUILD_USER="sarthakroy2002"
-git clone --depth=1 https://github.com/sarthakroy2002/android_prebuilts_clang_host_linux-x86_clang-7612306 clang
-git clone --depth=1 https://github.com/sarthakroy2002/prebuilts_gcc_linux-x86_aarch64_aarch64-linaro-7 los-4.9-64
-git clone --depth=1 https://github.com/sarthakroy2002/linaro_arm-linux-gnueabihf-7.5 los-4.9-32
+export KBUILD_BUILD_USER="alex"
+
+#git clone https://gitlab.com/Koushikdey2003/android_prebuilts_clang_host_linux-x86_clang-r437112b clang
+#wget https://releases.linaro.org/components/toolchain/binaries/7.5-2019.12/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz
+#tar -xvf gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz
+#git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 compile-64
 
 [ -d "out" ] && rm -rf out || mkdir -p out
-
+# make mrproper
 make O=out ARCH=arm64 RMX2020_defconfig
 
-PATH="${PWD}/clang/bin:${PATH}:${PWD}/los-4.9-32/bin:${PATH}:${PWD}/los-4.9-64/bin:${PATH}" \
+PATH="${PWD}/clang/bin:${PATH}:${PWD}/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/bin:${PATH}:${PWD}/compile-64/bin:${PATH}" \
 make -j$(nproc --all) O=out \
                       ARCH=arm64 \
                       CC="clang" \
                       CLANG_TRIPLE=aarch64-linux-gnu- \
-                      CROSS_COMPILE="${PWD}/los-4.9-64/bin/aarch64-linux-gnu-" \
-                      CROSS_COMPILE_ARM32="${PWD}/los-4.9-32/bin/arm-linux-gnueabihf-" \
+                      CROSS_COMPILE="${PWD}/compile-64/bin/aarch64-linux-androidkernel-" \
+                      CROSS_COMPILE_ARM32="${PWD}/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-" \
                       CONFIG_NO_ERROR_ON_MISMATCH=y
 }
 
-function zupload()
+function zipping()
 {
 git clone --depth=1 https://github.com/sarthakroy2002/AnyKernel3.git AnyKernel
 cp out/arch/arm64/boot/Image.gz-dtb AnyKernel
 cd AnyKernel
-zip -r9 Test-OSS-KERNEL-RMX2020-NEOLIT.zip *
-#curl --upload-file Test-OSS-KERNEL-RMX2020-NEOLIT.zip https://transfer.sh/
-curl -sL https://git.io/file-transfer | sh
-./transfer wet Test-OSS-KERNEL-RMX2020-NEOLIT.zip
+zip -r9 OSS-KERNEL-RMX2020-NEOLIT-KSU.zip *
 }
 
 compile
-zupload
+zipping
