@@ -15,13 +15,13 @@ export KBUILD_BUILD_USER="ALEX5402-KSU"
 # export CFLAGS="-fPIC"
 # export CFLAGS="-Wall -O2"
 
-#git clone https://gitlab.com/Koushikdey2003/android_prebuilts_clang_host_linux-x86_clang-r437112b clang
-#wget https://releases.linaro.org/components/toolchain/binaries/7.5-2019.12/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz
-#tar -xvf gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz
-#git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 compile-64
+git clone https://gitlab.com/Koushikdey2003/android_prebuilts_clang_host_linux-x86_clang-r437112b clang
+wget https://releases.linaro.org/components/toolchain/binaries/7.5-2019.12/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz
+tar -xvf gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz
+git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 compile-64
 
 [ -d "out" ] && rm -rf out || mkdir -p out
-make mrproper
+# make mrproper
 make O=out ARCH=arm64 RMX2020_defconfig
 
 PATH="${PWD}/clang/bin:${PATH}:${PWD}/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/bin:${PATH}:${PWD}/compile-64/bin:${PATH}" \
@@ -43,4 +43,4 @@ zip -r9 OSS-KERNEL-RMX2020-NEOLIT.zip *
 }
 
 compile
-# zipping
+zipping
