@@ -11,7 +11,7 @@ export LC_ALL=C && export USE_CCACHE=1
 ccache -M 100G
 export ARCH=arm64
 export KBUILD_BUILD_HOST=neolit
-export KBUILD_BUILD_USER="ALEX5402-KSU"
+export KBUILD_BUILD_USER="ALEX5402-KSU-V2-HENATAI-THermal"
 # export CFLAGS="-fPIC"
 # export CFLAGS="-Wall -O2"
 
@@ -22,7 +22,10 @@ git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_a
 
 [ -d "out" ] && rm -rf out || mkdir -p out
 make mrproper
-make O=out ARCH=arm64 RMX2020_defconfig
+
+# make O=out ARCH=arm64 RMX2020_defconfig
+
+make O=out ARCH=arm64 RMX2020_modconfig
 
 PATH="${PWD}/clang/bin:${PATH}:${PWD}/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/bin:${PATH}:${PWD}/compile-64/bin:${PATH}" \
 make -j$(nproc --all) O=out \
