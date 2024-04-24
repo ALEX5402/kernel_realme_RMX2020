@@ -21,7 +21,7 @@ tar -xvf gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz
 git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 compile-64
 
 [ -d "out" ] && rm -rf out || mkdir -p out
-# make mrproper
+make mrproper
 make O=out ARCH=arm64 RMX2020_defconfig
 
 PATH="${PWD}/clang/bin:${PATH}:${PWD}/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/bin:${PATH}:${PWD}/compile-64/bin:${PATH}" \
