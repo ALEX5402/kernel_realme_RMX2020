@@ -14,6 +14,7 @@ export KBUILD_BUILD_HOST=neolit
 export KBUILD_BUILD_USER="ALEX5402-KSU-V2-HENATAI-THermal"
 # export CFLAGS="-fPIC"
 # export CFLAGS="-Wall -O2"
+current_date=$(date +'%Y-%m-%d')
 
 git clone https://gitlab.com/Koushikdey2003/android_prebuilts_clang_host_linux-x86_clang-r437112b clang
 wget https://releases.linaro.org/components/toolchain/binaries/7.5-2019.12/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz
@@ -39,10 +40,11 @@ make -j$(nproc --all) O=out \
 
 function zipping()
 {
+
 git clone --depth=1 https://github.com/alex5402/AnyKernel3.git AnyKernel
 cp out/arch/arm64/boot/Image.gz-dtb AnyKernel
 cd AnyKernel
-zip -r9 OSS-KERNEL-RMX2020-NEOLIT-KSU.zip *
+zip -r9 OSS-KERNEL-RMX2020-NEOLIT-KSU-$current_date.zip *
 }
 
 compile
