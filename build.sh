@@ -12,7 +12,7 @@ export KBUILD_BUILD_USER="ALEX5402-KSU"
 git clone --depth=1 https://gitlab.com/sarthakroy2002/android_prebuilts_clang_host_linux-x86_clang-r437112b clang
 git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 los-4.9-64
 git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9 los-4.9-32
-
+current_date=$(date +'%Y-%m-%d')
 make O=out ARCH=arm64 RMX2020_defconfig clean
 # make O=out ARCH=arm64 RMX2020_defconfig rmx2020-stock_defconfig
 
@@ -32,7 +32,7 @@ rm -rf AnyKernel
 git clone --depth=1 https://github.com/alex5402/AnyKernel3.git AnyKernel
 cp out/arch/arm64/boot/Image.gz-dtb AnyKernel
 cd AnyKernel
-zip -r9 OSS-KERNEL-RMX2020-NEOLIT-KSU.zip *
+zip -r9 OSS-KERNEL-RMX2020-NEOLIT-KSU-$current_date.zip *
 }
 
 compile
